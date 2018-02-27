@@ -1,0 +1,117 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <app-page-header [heading]="'Challenge You'" [subHeading]="'Create a new challenge'" [icon]="'fa-quora'"></app-page-header>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-lg-6">
+      <span><b>{{ "Page" | translate }}:</b></span>
+      <ngb-pagination
+        [collectionSize]="pageSize"
+        [(page)]="paginationToolNumber"
+        [maxSize]="5" [rotate]="true"
+        [boundaryLinks]="true"
+        [disabled]='isPaginationDisabled'
+        (pageChange)="onPageChange($event)"></ngb-pagination>
+      <!--
+      <button class="btn btn-outline-primary" (click)="toggleDisabled()">
+        Toggle disabled
+      </button>
+      -->
+    </div>
+    <div class="col-md-12 col-lg-3 mb-2">
+      <button #addNewPageBtn class="btn btn-outline-primary col-12" (click)="addPage()" [disabled]='isAddNewPageDisabled'>
+        {{ "Add a new page" | translate }}
+      </button>
+    </div>
+    <div class="col-md-12 col-lg-3 mb-2">
+      <button #removeThisPageBtn class="btn btn-outline-primary col-12" (click)="removePage()" [disabled]='isRemovePageDisabled'>
+        {{ "Remove this page" | translate }}
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <ul class="steps steps-4">
+        <li #importQuestionBtn><a href="javascript:void(0);" title="" name="import-question" id="import-question" (click)="onClickLayerButton($event.target.parentElement.name)">  <!-- li class="current" -->
+          <em>{{ "Layer 1" | translate }}:</em><span>{{ "Import Question" | translate }}</span></a></li>
+        <li #hideAnswerBtn><a href="javascript:void(0);" title="" name="hide-answer" id="hide-answer" (click)="onClickLayerButton($event.target.parentElement.name)">
+          <em>{{ "Layer 2" | translate }}:</em><span>{{ "Hide Answer" | translate }}</span></a></li>
+        <li #makeHintBtn><a href="javascript:void(0);" title="" name="make-hint" id="make-hint" (click)="onClickLayerButton($event.target.parentElement.name)">
+          <em>{{ "Layer 3" | translate }}:</em><span>{{ "Make Hints" | translate }}</span></a></li>
+        <li #addBoxBtn><a href="javascript:void(0);" title="" name="add-box" id="add-box" (click)="onClickLayerButton($event.target.parentElement.name)">
+          <em>{{ "Layer 4" | translate }}:</em><span>{{ "Add Input Boxes" | translate }}</span></a></li>
+        <li #gameOptionBtn><a href="javascript:void(0);" title="" name="game-option" id="game-option" (click)="onClickLayerButton($event.target.parentElement.name)">
+          <em>{{ "Done" | translate }}:</em><span>{{ "Set Game Options" | translate }}</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <app-skyboard #skyboard
+                  [mode]="skyboardMode"
+                  [initialActiveLayerName]="initialActiveLayerName"
+                  [initialActiveToolName]="initialActiveToolName"
+                  [scopeFromParent]="scope"
+                  (onActivateProcess)="onActivateProcess($event)">
+    </app-skyboard>
+  </div>
+  <div #gameOptions class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 col-xl-4">
+        <form [formGroup]="myForm" novalidate (ngSubmit)="onSubmit(myForm.value, myForm.valid)">
+          <!-- <img [src]="thumbnailImg" width="100%" class="thumbnail-image">-->
+          <div>{{ "Thumbnail" | translate }}</div>
+          <div>
+            <canvas #thumbnailCanvas width="297.5px" height="421px"></canvas>
+          </div>
+          <div class="form-group">
+            <label for="question-blur-level">{{ "Question Blurred Level" | translate }}</label>
+            <select class="form-control" formControlName="blurLevel" id="question-blur-level" (change)="onChangeBlurLevel($event.target.value)">
+              <option [value]="null" [disabled]="true">{{ "Please select a blur level" | translate }}</option>
+              <option *ngFor="let blur of blurs" [value]="blur">{{blur}}</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6 col-xl-8" style="display:inline-block;">
+        <form [formGroup]="myForm" novalidate (ngSubmit)="onSubmit(myForm.value, myForm.valid)">
+          <div class="form-group">
+            <label for="question-name">{{ "Challenge's Name" | translate }}</label>
+            <input type="text" class="form-control" formControlName="questionName" id="question-name" aria-describedby="question name" placeholder='{{ "Enter name" | translate }}'>
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+          <div class="form-group">
+            <label for="question-topic">{{ "Topic" | translate }}</label>
+            <input type="text" class="form-control" formControlName="topic" id="question-topic" aria-describedby="question topic" placeholder='{{ "Enter topic" | translate }}'>
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+          <div class="form-group">
+            <label for="question-sub-topic">{{ "Sub-topic" | translate }}</label>
+            <input type="text" class="form-control" formControlName="subTopic" id="question-sub-topic" aria-describedby="question topic" placeholder='{{ "Enter sub-topic" | translate }}'>
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+          <div class="form-group">
+            <label for="question-difficulty">{{ "Difficulty" | translate }}</label>
+            <select class="form-control" formControlName="difficulty" id="question-difficulty">
+              <option [value]="null" [disabled]="true">{{ "Please select a difficulty level" | translate }}</option>
+              <option *ngFor="let difficulty of difficulties" [value]="difficulty">{{difficulty}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="question-tags">{{ "Tags" | translate }}</label>
+            <input type="text" class="form-control" formControlName="tags" id="question-tags" aria-describedby="question tags" placeholder='{{ "Enter tags" | translate }}'>
+            <small id="emailHelp" class="form-text text-muted">{{ "Separate the tag by comma (,)" | translate }}</small>
+          </div>
+          <button type="submit" class="btn btn-primary col-12">{{ "Submit" | translate }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--
+  <pre>{{myForm.value | json}}</pre>
+  -->
+  <br>
+  <br>
+
+</div>

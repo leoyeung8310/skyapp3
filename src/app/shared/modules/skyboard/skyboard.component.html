@@ -1,0 +1,277 @@
+<div #boardDiv>
+  <div class="row">
+    <div #allTools class="col-sm-2 col-md-2 col-lg-2 col-xl-2 hidden-div toolbar">
+      <!-- color: btn-success / btn-primary / btn-info / btn-warning / btn-danger -->
+      <div class="tool-bar-grid">
+        <div class="tool-bar-name"><span><b>{{"View"|translate}}:</b></span><br></div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #nothingBtn type="radio" name="nothing" id="nothing" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('nothing')">
+            <i class="fa fa-eye"></i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #transformBtn type="radio" name="transform" id="transform" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('transform')">
+            <i class="fa fa-arrows"></i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #zoomInBtn type="radio" name="zoom-in" id="zoom-in" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('zoom-in')">
+            <i class="fa fa-search-plus"></i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #zoomOutBtn type="radio" name="zoom-out" id="zoom-out" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('zoom-out')">
+            <i class="fa fa-search-minus"></i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #refreshBtn type="radio" name="refresh" id="refresh" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('refresh')">
+            <i class="fa fa-refresh"></i>
+          </label>
+        </div>
+      </div>
+
+      <div class="tool-bar-grid">
+        <div class="tool-bar-name"><span><b>{{"Layer"|translate}}:</b></span><br></div>
+        <div #editObjBtnGroup class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #moveTopBtn type="radio" name="move-top" id="move-top" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('move-top')">
+            <i class="fa fa-angle-double-up"></i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #moveUpBtn type="radio" name="move-up" id="move-up" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('move-up')">
+            <i class="fa fa-angle-up"></i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #moveDownBtn type="radio" name="move-down" id="move-down" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('move-down')">
+            <i class="fa fa-angle-down"></i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #moveBottomBtn type="radio" name="move-bottom" id="move-bottom" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('move-bottom')">
+            <i class="fa fa-angle-double-down"></i>
+          </label>
+        </div>
+      </div>
+
+      <div class="tool-bar-grid">
+        <div class="tool-bar-name"><span class="hidden-sm-down"><b>{{"Control"|translate}}:</b></span><br></div>
+        <div class="btn-group" data-toggle="buttons">
+          <input class="color-picker"
+                 cpOutputFormat
+                 [(colorPicker)]="color"
+                 [style.background]="color"
+                 [cpOKButton]="true"
+                 [cpAlphaChannel]="'disabled'"
+                 (colorPickerChange)="onChangeColor(color)"
+                 [cpPresetColors]="['#fff', '#000', '#2889e9', '#e920e9', '#fff500', 'rgb(236,64,64)']"
+                 readonly="true"
+          />
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #duplicateBtn type="radio" name="duplicate" id="duplicate" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('duplicate')">
+            <i class="fa fa-clone"></i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #removeBtn type="radio" name="remove" id="remove" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('remove')">
+            <i class="fa fa-trash-o"></i>
+          </label>
+        </div>
+      </div>
+
+      <div class="tool-bar-grid">
+        <div class="tool-bar-name"><span class="hidden-sm-down"><b>{{"Item"|translate}}:</b></span><br></div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #penBtn type="radio" name="pen" id="pen" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('pen')">
+            <i class="fa fa-pencil"></i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #circleBtn type="radio" name="circle" id="circle" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('circle')">
+            <i class="fa fa-circle"></i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #squareBtn type="radio" name="square" id="square" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('square')">
+            <i class="fa fa-square"></i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #normalLineBtn type="radio" name="normal-line" id="normal-line" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('normal-line')">
+            <i class="fa fa-minus"></i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #arrowLineBtn type="radio" name="arrow-line" id="arrow-line" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('arrow-line')">
+            <i class="fa fa-long-arrow-right"></i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #textBtn type="radio" name="text" id="text" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('text')">
+            <i class="fa fa-font"></i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #linkBtn type="radio" name="link" id="link" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('link')">
+            <i class="fa fa-link"></i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default btn-file">
+            <input #fileInputBtn type="file" name="file-input" id="file-input" autocomplete="off"
+                   (change)="fileUpload($event);" [disabled]="isDisabled('file-input')">
+            <!-- accept="image/png, image/jpeg, image/jpg, application/msword, application/vnd.ms-excel, application/pdf " -->
+            <i class="fa fa-file-image-o"></i>
+          </label>
+        </div>
+      </div>
+
+      <div #boxToolDiv class="tool-bar-grid">
+        <div class="tool-bar-name"><span class="hidden-sm-down"><b>{{"Box"|translate}}:</b></span><br></div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #answerBoxBtn type="radio" name="answer-box" id="answer-box" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('answer-box')">
+            <i class="fa fa-square-o"> {{"Answer"|translate}}</i>
+          </label>
+        </div>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input #commentBoxBtn type="radio" name="comment-box" id="comment-box" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('comment-box')">
+            <i class="fa fa-comment-o"> {{"Comment"|translate}}</i>
+          </label>
+        </div>
+      </div>
+
+      <!-- always hidden button
+      <div class="hidden-div btn-group" data-toggle="buttons">
+        <label class="btn btn-default hidden">
+          <input #doneBtn type="radio" name="done" id="done" autocomplete="off" (click)="activateTool($event.target.name)" [disabled]="isDisabled('done')">
+          <i class="fa"><b>Done</b></i>
+        </label>
+      </div>
+      -->
+    </div>
+    <div #canvasDiv class="col board">
+      <div class="row">
+        <canvas #myCanvas class="main-view col-12" resize></canvas>
+      </div>
+    </div>
+    <div #controlDiv class="col-md-3 col-lg-4 col-xl-3 hidden-div control-div">
+      <div class="container">
+        <div class="row justify-content-between mt-2">
+          <!-- Step -->
+          <div class="col-lg-6" >
+            <a *ngIf="currentActiveLayerNumber >= 2 && currentActiveLayerNumber <= 5"
+               href="javascript:;" (click)="onClickPreviousStep()"
+               class="btn btn-outline btn-lg col-12" role="button">{{"Previous"|translate}}</a>
+          </div>
+          <div class="col-lg-6" *ngIf="currentActiveLayerNumber >= 1 && currentActiveLayerNumber <= 4">
+            <!-- <button class="btn btn-primary btn-lg col-12" ng-click="test()">NEXT</button> -->
+            <a href="javascript:;" (click)="onClickNextStep()"
+               class="btn btn-outline btn-lg col-12" role="button">{{"Next"|translate}}</a>
+          </div>
+        </div>
+        <div class="row justify-content-between">
+          <!-- Page -->
+          <div class="col-lg-6">
+            <a *ngIf="currentActiveLayerNumber === 6 && currentPageNumber > 1"
+               href="javascript:;" (click)="onClickPreviousPage()"
+               class="btn btn-outline btn-lg col-12" role="button">{{"Previous"|translate}}</a>
+          </div>
+          <div class="col-lg-6" *ngIf="currentActiveLayerNumber === 6 && currentPageNumber < modelArr['numberOfPages']">
+            <a href="javascript:;" (click)="onClickNextPage()"
+               class="btn btn-outline btn-lg col-12" role="button">{{"Next" | translate}}</a>
+          </div>
+          <!-- Submit -->
+          <div class="col-lg-6" *ngIf="showSubmitDiv && currentPageNumber === modelArr['numberOfPages']">
+            <a href="javascript:;" (click)="onClickSubmit($event.target.name)"
+               class="btn btn-primary btn-lg col-12" role="button"
+               name="submit" id="submit">{{"Submit"|translate}}</a>
+          </div>
+        </div>
+        <div *ngIf="showDoneDiv" class="row justify-content-center mt-2">
+          <div class="col-12">
+            <a href="javascript:;" name="done" id="done"
+               class="btn btn-secondary btn-lg col-12" role="button"
+               (click)="activateTool($event.target.name)">{{"Done"|translate}}</a>
+          </div>
+        </div>
+        <div *ngIf="showViewLinkDiv" class="row justify-content-center mt-2">
+          <div class="col-12">
+            <a href="javascript:;" name="viewLink" id="viewLink"
+               class="btn btn-secondary btn-lg col-12" role="button"
+               (click)="onClickViewLinkButton()">{{"View Link"|translate}}</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <form class="input-form">
+              <div *ngIf="showTextInputBoxDiv">
+                <mat-form-field class="col-12" style="display: inline">
+                  <input matInput
+                         name="textInputBox"
+                         [(ngModel)]="tempTextOfInput"
+                         #textInput
+                         type="text"
+                         [(placeholder)]="tiPlaceholder"
+                         (ngModelChange)="onChangeOfTextInput($event)"
+                         [formControl]="textInputFormControl">
+                  <mat-error *ngIf="textInputFormControl.hasError('required') && this.selectedBoxFromTeacher?.name === 'answer-box-group-from-teacher'">
+                    {{"Answer is"|translate}} <strong>{{"required"|translate}}</strong>
+                  </mat-error>
+                  <mat-hint align="start"><strong></strong></mat-hint>
+                  <mat-hint align="end">{{textInput.value.length}} / 4096</mat-hint>
+                </mat-form-field>
+              </div>
+              <div *ngIf="showCaseSensitiveDiv">
+                <b>{{"Auto-marking"|translate}}:</b>
+                <section class="example-section">
+                    <mat-checkbox name="csButton"
+                                  [(ngModel)]="tempCaseSensitive"
+                                  (ngModelChange)="onChangeOnCaseSensitive($event)"
+                                  [(disabled)]="disableCaseSensitive">{{"Case Sensitive"|translate}}</mat-checkbox>
+                </section>
+              </div>
+              <div *ngIf="showTextAreaDiv">
+                <mat-form-field class="col-12" style="display: inline">
+                  <textarea matInput
+                            name="textAreaBox"
+                            [(ngModel)]="tempTextOfTextArea"
+                            #textArea
+                            maxlength="4096"
+                            [(placeholder)]="taPlaceholder"
+                            class='editor'
+                            (ngModelChange)="onChangeOnTextArea($event)"
+                            [formControl]="textAreaFormControl"></textarea>
+                  <mat-hint align="start"><strong></strong></mat-hint>
+                  <mat-hint align="end">{{textArea.value.length}} / 4096</mat-hint>
+                </mat-form-field>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

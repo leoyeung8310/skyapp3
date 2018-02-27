@@ -1,0 +1,116 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+  <ul class="list-group">
+    <!-- user-menu -->
+    <!--
+    <div *ngIf="cs.localStorageItem('isLoggedin')" class="nested-menu smaller-992-appear-menu">
+      <a class="list-group-item" (click)="addExpandClass('user-pages')">
+        <span><i class="fa fa-plus"></i>&nbsp;{{ 'User Menu' | translate }}</span>
+      </a>
+      <li class="nested" [class.expand]="showMenu === 'user-pages'">
+        <ul class="submenu">
+          <li>
+            <a routerLink="/notifications" [routerLinkActive]="['router-link-active']" class="list-group-item">
+              <i class="fa fa-fw fa-bell"></i>&nbsp;{{ 'Notifications' | translate }}
+            </a>
+          </li>
+          <li>
+            <a routerLink="/inbox" [routerLinkActive]="['router-link-active']" class="list-group-item">
+              <i class="fa fa-fw fa-envelope"></i>&nbsp;{{ 'Inbox' | translate }}
+            </a>
+          </li>
+          <li>
+            <a routerLink="/achievements" [routerLinkActive]="['router-link-active']" class="list-group-item">
+              <i class="fa fa-fw fa-tasks"></i>&nbsp;{{ 'Achievements' | translate }}
+            </a>
+          </li>
+          <li>
+            <a routerLink="/records" [routerLinkActive]="['router-link-active']" class="list-group-item">
+              <i class="fa fa-fw fa-folder"></i>&nbsp;{{ 'Records' | translate }}
+            </a>
+          </li>
+          <li>
+            <a routerLink="/profile" [routerLinkActive]="['router-link-active']" class="list-group-item">
+              <i class="fa fa-fw fa-user"></i>&nbsp;{{ 'Profile' | translate }}
+            </a>
+          </li>
+          <li>
+            <a routerLink="/settings" [routerLinkActive]="['router-link-active']" class="list-group-item">
+              <i class="fa fa-fw fa-gear"></i>&nbsp;{{ 'Settings' | translate }}
+            </a>
+          </li>
+        </ul>
+      </li>
+    </div>
+    -->
+    <!--
+    <a routerLink="/main" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Main' | translate }}
+    </a>
+    -->
+    <!--
+    <a routerLink="/challenge-you" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-quora"></i>&nbsp;{{ 'Challenge You' | translate }}
+    </a>
+    -->
+    <!--
+    <a routerLink="/what-is-wrong" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-question"></i>&nbsp;{{ 'What is Wrong' | translate }}
+    </a>
+    <a routerLink="/step-by-step" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-sort-amount-asc"></i>&nbsp;{{ 'Step by Step' | translate }}
+    </a>
+    <a routerLink="/statistic" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-bar-chart"></i>&nbsp;{{ 'Statistic' | translate }}
+    </a>
+    <a routerLink="/about-us" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-users"></i>&nbsp;{{ 'About Us' | translate }}
+    </a>
+    -->
+
+    <!-- language menu -->
+    <div class="nested-menu smaller-992-appear-menu">
+      <a class="list-group-item" (click)="addExpandClass('language-pages')">
+        <span><i class="fa fa-language"></i>&nbsp;{{ 'Language' | translate }}</span>
+      </a>
+      <li class="nested" [class.expand]="showMenu === 'language-pages'">
+        <ul class="submenu">
+          <li>
+            <a href="javascript:void(0)" (click)="changeLang('en')">English</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" (click)="changeLang('tc')">繁體中文</a>
+        </ul>
+      </li>
+    </div>
+    <a *ngIf="cs.localStorageItem('isLoggedin')" [routerLink]="['/main']" (click)="cs.onLoggedout()" [routerLinkActive]="['router-link-active']" class="list-group-item smaller-992-appear-menu">
+      <i class="fa fa-fw fa-arrow-circle-left"></i>&nbsp;{{ 'Log Out' | translate }}
+    </a>
+
+    <!--
+    <a *ngIf="!cs.localStorageItem('isLoggedin')" [routerLink]="['/login']" href="javascript:void(0)" class="list-group-item smaller-992-appear-menu">
+      <i class="fa fa-fw fa-arrow-circle-right"></i>&nbsp;{{ 'Login' | translate }}
+    </a>
+    <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'charts' | translate }}
+    </a>
+    <a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <i class="fa fa-fw fa-table"></i>&nbsp;{{ 'tables' | translate }}
+    </a>
+    <a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'forms' | translate }}
+    </a>
+    <a [routerLink]="['/bs-element']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <i class="fa fa-fw fa-desktop"></i>&nbsp;{{ 'boostrapElement' | translate }}
+    </a>
+    <a [routerLink]="['/grid']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <i class="fa fa-fw fa-wrench"></i>&nbsp;{{ 'boostrapGrid' | translate }}
+    </a>
+    <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <i class="fa fa-th-list"></i>&nbsp;{{ 'component' | translate }}
+    </a>
+    <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <i class="fa fa-file-o"></i>&nbsp;{{ 'blankpage' | translate }}
+    </a>
+     -->
+  </ul>
+</nav>

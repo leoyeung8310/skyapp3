@@ -1,0 +1,184 @@
+<app-page-header [heading]="'Challenge You'" [icon]="'fa-quora'"></app-page-header>
+
+<div class="row mb-2">
+  <div class="jumbotron col-lg-8">
+    <h1>{{'Challenge You' | translate}}</h1>
+    <p>{{'Challenge You description' | translate}}</p>
+    <!--
+    <p>
+      <a href="javascript:;" class="btn btn-info btn-lg" role="button">{{'Acknowledgement' | translate}} »</a>
+    </p>
+    -->
+  </div>
+  <div class="col-lg-4">
+    <p align="center">
+      <a href="javascript:;"
+         class="btn btn-primary btn-lg col-12"
+         role="button"
+         routerLink="create"
+         [routerLinkActive]="['router-link-active']">{{'Create a Challenge' | translate}}</a>
+    </p>
+
+    <div class="card mb-3">
+      <div class="card-header card-default">
+        {{'Records' | translate}}
+      </div>
+      <div class="card-block">
+        {{countOfChallenges}} {{'challenges' | translate}}  <br>
+        {{countOfSubmissions}} {{'submissions' | translate}}  <br>
+        {{countOfSubmittedAnswers}} {{'attempts' | translate}}  <br>
+      </div>
+    </div>
+    <!--
+    <div class="card mb-3">
+      <div class="card-header card-default">
+        Find Topics (Disabled)
+      </div>
+      <div class="card-block">
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2 col-12" type="text" placeholder="Search">
+        </form>
+      </div>
+    </div>
+    -->
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">{{'Challenge You' | translate}}</div>
+  <div class="card-block">
+    <!--
+    <div class="row mb-2">
+      <div class="mr-2">
+        <b>Type: </b>
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>All</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <button class="dropdown-item">Public</button>
+            <button class="dropdown-item">Private</button>
+            <button class="dropdown-item">My Questions</button>
+            <button class="dropdown-item">My Submissions</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mr-2">
+        <b>Subject: </b>
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownMenu2" ngbDropdownToggle>All</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item">Chinese</button>
+            <button class="dropdown-item">English</button>
+            <button class="dropdown-item">Maths</button>
+            <button class="dropdown-item">Liberal Studies</button>
+            <button class="dropdown-item">IoT Security</button>
+            <button class="dropdown-item">IQ</button>
+            <button class="dropdown-item">Others</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mr-2">
+        <b>Time: </b>
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownMenu3" ngbDropdownToggle>All</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+            <button class="dropdown-item">Today</button>
+            <button class="dropdown-item">This Week</button>
+            <button class="dropdown-item">This Month</button>
+            <button class="dropdown-item">This Year</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    -->
+    <!--
+    <div class="row">
+      <ngb-pagination [collectionSize]="120" [(page)]="advancedPagination" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+    </div>
+    -->
+    <div class="row">
+      <ngb-tabset class="col-12">
+        <ngb-tab title="{{'Active' | translate}}">
+          <ng-template ngbTabContent >
+            <!--<app-challenge-card [bgClass]="'card-primary'" [icon]="'fa-quora'" [count]="26" [label]="'New Challenges!'" ></app-challenge-card>-->
+            <div class="row mb-5">
+              <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3 mt-2" *ngFor="let card of challengeCards">
+                <div class="card">
+                  <div class="inside-card-header">
+                    <a routerLink="view/{{card._id}}" [routerLinkActive]="['router-link-active']"><b>{{card.questionName}}</b></a>
+                    <br>
+                    <i class="subtopic">{{card.topic}}</i><i class="pull-right subtopic">{{card.subTopic}}</i>
+                  </div>
+                  <div class="inside-card-content">
+                    <div class="text-center"><a href="javascript:;"><img class="card-thumbnail" src="{{card.thumbnail}}" routerLink="view/{{card._id}}" [routerLinkActive]="['router-link-active']"></a></div>
+                  </div>
+                  <div class="inside-card-top-footer">
+                    <figure class="profile">
+                      <img src="{{profileSrc}}" class="profile-avatar">
+                    </figure>
+                    <div class="pull-right block-status-status">
+                      <div class="text-warning" [innerHTML]="card.difficulty | fiveStars"></div>
+                      <div class="status-spacing"></div>
+                      <!--
+                      <div class=""><i class="fa fa fa-eye"></i><span class="badge">{{card.viewNum}}</span><i class="fa fa fa-sort"></i><span class="badge">{{card.rating}}</span><i class="fa fa fa-commenting-o"></i><span class="badge">{{card.submissionNum}}</span></div>
+                      -->
+                    </div>
+                    <div class="user-name"><b>{{card.ownerName}}</b></div>
+                  </div>
+                  <div class="inside-card-bottom-footer">
+                    <span *ngFor="let tag of card.tags"><a href="javascript:;" class="btn btn-xs btn-outline-warning" role="button">{{tag}}</a></span>
+                    <br>
+                    <div class="ml-1">
+                      <small>Last updated {{card.tLastUpdate | timeAgo}}</small> <!-- Last updated at 3 mins ago -->
+                      <!--
+                      <div class="pull-right"><button class="btn btn-outline-danger btn-xs-danger">Report</button></div>
+                      -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </ng-template>
+        </ngb-tab>
+        <!--
+        <ngb-tab>
+          <ng-template ngbTabTitle>Hot</ng-template>
+          <ng-template ngbTabContent>
+            <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
+              craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+              cillum PBR. Homo nostrud organic.</p>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle>Voted</ng-template>
+          <ng-template ngbTabContent>
+            <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
+              craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+              cillum PBR. Homo nostrud organic.</p>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle>Difficult</ng-template>
+          <ng-template ngbTabContent>
+            <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
+              craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+              cillum PBR. Homo nostrud organic.</p>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle>Suggested*</ng-template>
+          <ng-template ngbTabContent>
+            <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
+              craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+              cillum PBR. Homo nostrud organic.</p>
+          </ng-template>
+        </ngb-tab>
+        -->
+      </ngb-tabset>
+    </div>
+  </div>
+</div>
+

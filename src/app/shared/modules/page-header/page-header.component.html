@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col-xl-12">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <i class="fa fa-quora"></i>
+                <a href="Javascript:void(0)" [routerLink]="['/challenge-you']">{{"Challenge You" | translate}}</a>
+            </li>
+            <li *ngIf="heading!='Challenge You'" class="breadcrumb-item active"><i class="fa {{icon}}"></i> {{heading | translate}}</li>
+            <li *ngIf="subHeading" class="breadcrumb-item active"><i class="fa {{icon}}"></i> {{subHeading | translate}}</li>
+        </ol>
+    </div>
+</div>

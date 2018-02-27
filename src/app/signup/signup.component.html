@@ -1,0 +1,46 @@
+<div class="login-page">
+  <div class="row">
+    <div class="col-md-4 push-md-4">
+      <img class="user-avatar" src="assets/images/logo.png" width="150px" />
+      <h1>SkyApp</h1>
+      <form [formGroup]="registrationForm" id="registrationForm" (ngSubmit)="onSubmit($event, registrationForm.value)" novalidate>
+        <br>
+        <mat-form-field>
+          <input matInput formControlName="code" id="code" placeholder="Admin's Passcode" required>
+          <mat-error>Admin's passcode is required</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput formControlName="account" id="account" placeholder="Account" required>
+          <mat-error>Account is required</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput formControlName="password" id="password" placeholder="Password" type="password" required>
+          <mat-error>Password is required</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput formControlName="confirmPassword" id="confirmPassword" placeholder="Repeat Password" type="password" required>
+          <mat-error>Confirm password is required</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput formControlName="fullName" id="fullName" placeholder="Full Name" required>
+          <mat-error>Full name is required</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput formControlName="email" ype="email" id="email" placeholder="Enter your email" required>
+          <mat-error *ngIf="registrationForm.get('email').hasError('required')">Email is required</mat-error>
+          <mat-error *ngIf="registrationForm.get('email').hasError('email')">Not a valid email</mat-error>
+        </mat-form-field>
+        <br>
+        <br>
+        <br>
+        <button mat-raised-button type="submit" color="primary" [disabled]="( !registrationForm.valid || !registrationForm.dirty || forceDisabled)">Register</button>
+        <a mat-raised-button routerLink="/login">Back</a>
+      </form>
+    </div>
+  </div>
+</div>

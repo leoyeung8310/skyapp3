@@ -1,0 +1,123 @@
+
+<app-page-header [heading]="'Main'" [icon]="'fa-bar-chart-o'"></app-page-header>
+<!--
+<div class="row">
+  <div class="col-mat-12">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slider of sliders">
+        <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
+        <div class="carousel-caption">
+          <h3>{{slider.label}}</h3>
+          <p>{{slider.text}}</p>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-xl-3 col-lg-6">
+    <app-stat [bgClass]="'card-primary'" [icon]="'fa-quora'" [count]="26" [label]="'New Challenges!'" ></app-stat>
+  </div>
+  <div class="col-xl-3 col-lg-6">
+    <app-stat [bgClass]="'card-info'" [icon]="'fa-question'" [count]="12" [label]="'New Wrongs!'" ></app-stat>
+  </div>
+  <div class="col-xl-3 col-lg-6">
+    <app-stat [bgClass]="'card-success'" [icon]="'fa-sitemap'" [count]="124" [label]="'New Steps!'" ></app-stat>
+  </div>
+  <div class="col-xl-3 col-lg-6">
+    <app-stat [bgClass]="'card-danger'" [icon]="'fa-gift'" [count]="13" [label]="'New Icons!'"></app-stat>
+  </div>
+</div>
+<br>
+<ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
+<br>
+
+<div class="row">
+
+  <div class="col-lg-8">
+    <ngb-tabset>
+      <ngb-tab title="SkyApp's Timeline">ng
+        <ng-template ngbTabContent>
+          <app-timeline></app-timeline>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab *ngIf="cs.localStorageItem('isLoggedin')">
+        <ng-template ngbTabTitle>Leo Yeung's Timeline</ng-template>
+        <ng-template ngbTabContent>
+          <app-timeline></app-timeline>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+
+  <div class="col-lg-4">
+    <nav class="navbar navbar-light bg-faded justify-content-between">
+      <a class="navbar-brand">Find Topics</a>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2 col-12" type="text" placeholder="Search">
+      </form>
+    </nav>
+    <br>
+    <div class="card card-default" *ngIf="cs.localStorageItem('isLoggedin')">
+      <div class="card-header">
+        <i class="fa fa-heart fa-fw"></i> Suggested Topics For You
+      </div>
+      <div class="list-group">
+        <a href="javascript:;" class="list-group-item">
+          <h4 class="list-group-item-heading">List group item heading</h4>
+          <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+        </a>
+        <a href="javascript:;" class="list-group-item">
+          <h4 class="list-group-item-heading">List group item heading</h4>
+          <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+        </a>
+        <a href="javascript:;" class="list-group-item">
+          <h4 class="list-group-item-heading">List group item heading</h4>
+          <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+        </a>
+      </div>
+    </div>
+    <br>
+    <div class="card card-default">
+      <div class="card-header">
+        <i class="fa fa-star fa-fw"></i> Hot Topics
+      </div>
+      <div class="list-group">
+        <a href="javascript:;" class="list-group-item">
+          <h4 class="list-group-item-heading">List group item heading</h4>
+          <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+        </a>
+        <a href="javascript:;" class="list-group-item">
+          <h4 class="list-group-item-heading">List group item heading</h4>
+          <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+        </a>
+        <a href="javascript:;" class="list-group-item">
+          <h4 class="list-group-item-heading">List group item heading</h4>
+          <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+        </a>
+      </div>
+    </div>
+    <br>
+    <div class="card card-default">
+      <div class="card-header">
+        <i class="fa fa-star fa-fw"></i> Leaderboards
+      </div>
+      <div class="list-group">
+
+      </div>
+    </div>
+    <br>
+    <div class="card card-default">
+      <div class="card-header">
+        <i class="fa fa-star fa-fw"></i> Social Networks
+      </div>
+
+      <div class="list-group">
+
+      </div>
+    </div>
+
+  </div>
+</div>
+-->

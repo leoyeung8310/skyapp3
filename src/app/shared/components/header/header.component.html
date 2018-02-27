@@ -1,0 +1,139 @@
+<div class="pos-f-t fixed-top header">
+  <nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
+    <button class="navbar-toggler navbar-toggler-left" (click)="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <h1 class="navbar-brand">
+      <a href="javascript:void(0)" [routerLink]="['/challenge-you']" class="platform-name">SkyApp 3</a>
+    </h1>
+    <div class="collapse navbar-collapse">
+      <!--
+      <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      </form>
+      -->
+      <ul class="navbar-nav ml-auto mt-2 mt-md-0">
+
+        <!-- Notifications -->
+        <!--
+        <li *ngIf="cs.localStorageItem('isLoggedin')" class="nav-item dropdown" ngbDropdown>
+          <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
+            <i class="fa fa-bell"></i> <b class="caret"></b><span class="sr-only">(current)</span><span class="badge badge-info">3</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <a href="javascript:void(0)" class="dropdown-item">Pending Task<span class="badge badge-info">6</span></a>
+            <a href="javascript:void(0)" class="dropdown-item">In queue <span class="badge badge-info"> 13</span></a>
+            <a href="javascript:void(0)" class="dropdown-item">Mail <span class="badge badge-info"> 45</span></a>
+            <li class="dropdown-divider"></li>
+            <a routerLink="/notifications" href="javascript:void(0)" class="dropdown-item">{{ 'View All' | translate }}<span class="badge badge-info">64</span></a>
+          </ul>
+        </li>
+         -->
+
+        <!-- Inbox -->
+        <!--
+        <li *ngIf="cs.localStorageItem('isLoggedin')" class="nav-item dropdown" ngbDropdown>
+          <a class="nav-link" href="javascript:void(0)" ngbDropdownToggle>
+            <i class="fa fa-envelope"></i> <b class="caret"></b><span class="sr-only">(current)</span><span class="badge badge-info"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right messages">
+            <li class="media">
+              <img class="d-flex align-self-center mr-3" src="assets/images/slide_461162_6224974_sq50.jpg" alt="Generic placeholder image">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">Leo Yeung</h5>
+                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                <p class="last"> Lorem ipsum dolor sit amet, consectetur...</p>
+              </div>
+            </li>
+            <li class="media">
+              <img class="d-flex align-self-center mr-3" src="assets/images/slide_461162_6224974_sq50.jpg" alt="Generic placeholder image">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">Leo Yeung</h5>
+                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                <p class="last"> Lorem ipsum dolor sit amet, consectetur...</p>
+              </div>
+            </li>
+            <li class="media">
+              <img class="d-flex align-self-center mr-3" src="assets/images/slide_461162_6224974_sq50.jpg" alt="Generic placeholder image">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">Leo Yeung</h5>
+                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                <p class="last"> Lorem ipsum dolor sit amet, consectetur...</p>
+              </div>
+            </li>
+            <a routerLink="/inbox" href="javascript:void(0)" class="dropdown-item text-center">{{ 'View All' | translate }} <span class="badge badge-info">6</span></a>
+          </ul>
+        </li>
+        -->
+
+        <!-- Achievements -->
+        <!--
+        <li *ngIf="cs.localStorageItem('isLoggedin')" class="nav-item dropdown" ngbDropdown>
+          <a class="nav-link" href="javascript:void(0)" ngbDropdownToggle>
+            <i class="fa fa-tasks"></i> <b class="caret"></b><span class="sr-only">(current)</span><span class="badge badge-info">4</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right messages">
+            <li class="media">
+              <img class="d-flex align-self-center mr-3" src="assets/images/slide_461162_6224974_sq50.jpg" alt="Generic placeholder image">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">Leo Yeung</h5>
+                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                <p class="last"> Lorem ipsum dolor sit amet, consectetur...</p>
+              </div>
+            </li>
+            <li class="media">
+              <img class="d-flex align-self-center mr-3" src="assets/images/slide_461162_6224974_sq50.jpg" alt="Generic placeholder image">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">Leo Yeung</h5>
+                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                <p class="last"> Lorem ipsum dolor sit amet, consectetur...</p>
+              </div>
+            </li>
+            <li class="media">
+              <img class="d-flex align-self-center mr-3" src="assets/images/slide_461162_6224974_sq50.jpg" alt="Generic placeholder image">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">Leo Yeung</h5>
+                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                <p class="last"> Lorem ipsum dolor sit amet, consectetur...</p>
+              </div>
+            </li>
+            <a routerLink="/achievements" href="javascript:void(0)" class="dropdown-item text-center">{{ 'View All' | translate }} <span class="badge badge-info">4</span></a>
+          </ul>
+        </li>
+        -->
+
+        <!-- Language -->
+        <li class="nav-item dropdown" ngbDropdown>
+          <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
+            <i class="fa fa-language"></i> {{ 'Language' | translate }} <b class="caret"></b>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="javascript:void(0)" (click)="changeLang('en')">English</a>
+            <a class="dropdown-item" href="javascript:void(0)" (click)="changeLang('tc')">繁體中文</a>
+          </div>
+        </li>
+
+        <!-- user personal menu -->
+        <li *ngIf="cs.localStorageItem('isLoggedin')" class="nav-item dropdown" ngbDropdown>
+          <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
+            <i class="fa fa-user"></i> {{cs.localStorageItem('fullName')}} <b class="caret"></b>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <!--
+            <a class="dropdown-item" routerLink="/records" href="javascript:void(0)"><i class="fa fa-fw fa-folder"></i> {{ 'Records' | translate }}</a>
+            <a class="dropdown-item" routerLink="/profile" href="javascript:void(0)"><i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}</a>
+            <a class="dropdown-item" routerLink="/settings" href="javascript:void(0)"><i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}</a>
+            -->
+            <a class="dropdown-item" [routerLink]="['/main']" (click)="cs.onLoggedout()"><i class="fa fa-fw fa-arrow-circle-left"></i> {{ 'Log Out' | translate }}</a>
+          </div>
+        </li>
+
+        <li *ngIf="!cs.localStorageItem('isLoggedin')" class="nav-item">
+          <a href="javascript:void(0)" [routerLink]="['/login']" class="nav-link">
+            <i class="fa fa-arrow-circle-right"></i> {{ 'Login' | translate }} <b class="caret"></b>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

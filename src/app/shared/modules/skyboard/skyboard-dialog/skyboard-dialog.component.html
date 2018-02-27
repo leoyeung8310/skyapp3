@@ -1,0 +1,50 @@
+<div class="container">
+  <div mat-dialog-actions class="row justify-content-between">
+    <div class="col-6">
+      <button mat-button (click)="onNoClick()" tabindex="-1" class="btn btn-outline-secondary btn-sm col-12">Cancel</button>
+    </div>
+    <div class="col-6">
+      <button mat-button [mat-dialog-close]="data" tabindex="2" class="btn btn-outline-primary btn-sm col-12">Save</button>
+    </div>
+  </div>
+
+  <div *ngIf="data.showTextInputBoxDiv" class="row justify-content-between">
+    <mat-form-field class="col-12" style="display: inline">
+      <!-- <input mdInput #message maxlength="256" placeholder="Message">-->
+      <input matInput
+             name="textInputBox"
+             [(ngModel)]="data.tempTextOfInput"
+             #textInput
+             type="text"
+             [(placeholder)]="data.tiPlaceholder">
+      <mat-hint align="start"><strong></strong></mat-hint>
+      <mat-hint align="end">{{textInput.value.length}} / 4096</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="data.showCaseSensitiveDiv" class="row justify-content-between">
+    <b>Auto-marking:</b>
+    <section class="example-section">
+      <mat-checkbox name="csButton"
+                   [(ngModel)]="data.tempCaseSensitive">Case Sensitive</mat-checkbox>
+    </section>
+  </div>
+
+  <div *ngIf="data.showTextAreaDiv" class="row justify-content-between">
+    <mat-form-field class="col-12" style="display: inline">
+      <!-- <input mdInput #message maxlength="256" placeholder="Message">-->
+      <textarea matInput
+                name="textAreaBox"
+                [(ngModel)]="data.tempTextOfTextArea"
+                #textArea
+                maxlength="4096"
+                [(placeholder)]="data.taPlaceholder"
+                rows="4"
+                class='editor'></textarea>
+      <mat-hint align="start"><strong></strong></mat-hint>
+      <mat-hint align="end">{{textArea.value.length}} / 4096</mat-hint>
+    </mat-form-field>
+  </div>
+
+</div>
+

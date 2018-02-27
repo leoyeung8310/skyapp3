@@ -1,0 +1,51 @@
+<div class="login-page">
+  <div class="row">
+    <div class="col-md-4 push-md-4">
+      <img src="assets/images/logo.png" width="150px" class="user-avatar" />
+      <h1><a href="javascript:;"
+             routerLink="/main"
+             [routerLinkActive]="['router-link-active']">SkyApp 3</a></h1>
+      <span>v{{version}}</span>
+      <!--
+      <form role="form">
+        <div class="form-content">
+          <div class="form-group">
+            <input type="text" ng-model="name" class="form-control input-underline input-lg" id="" placeholder="Email">
+          </div>
+
+          <div class="form-group">
+            <input type="password" class="form-control input-underline input-lg" id="" placeholder="Password">
+          </div>
+        </div>
+        <a class="btn rounded-btn" [routerLink]="['/main']" (click)="onLoggedin()"> Log in </a>
+        &nbsp;
+        <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a>
+      </form>
+      -->
+
+      <form [formGroup]="loginForm" id="loginForm" (ngSubmit)="onSubmit($event, loginForm.value)" novalidate>
+        <br>
+        <mat-form-field>
+          <input matInput formControlName="account" id="account" placeholder="Account" required>
+          <mat-error>Account is required</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput formControlName="password" id="password" placeholder="Password" type="password" required>
+          <mat-error>Password is required</mat-error>
+        </mat-form-field>
+        <br>
+        <br>
+        <div class="button-row">
+          <button mat-raised-button type="submit" color="primary" [disabled]="( !loginForm.valid || !loginForm.dirty || forceDisabled)">Login</button>
+          <a mat-raised-button routerLink="/signup">Register</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--
+  <app-chat></app-chat>
+  -->
+</div>
+
+

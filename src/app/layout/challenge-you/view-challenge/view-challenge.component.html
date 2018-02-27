@@ -1,0 +1,389 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <app-page-header [heading]="'Challenge You'" [subHeading]="'Take up a challenge'" [icon]="'fa-quora'"></app-page-header>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div #waitingAcceptDiv class="row hidden-div">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" *ngFor="let card of challengeCards">
+          <div class="card">
+            <div class="inside-card-header">
+              <b>{{card.questionName}}</b>
+              <br>
+              <i class="subtopic">{{card.topic}}</i><i class="pull-right subtopic">{{card.subTopic}}</i>
+            </div>
+            <div class="inside-card-content">
+              <div class="text-center"><img class="card-thumbnail" src="{{card.thumbnail}}"></div>
+            </div>
+            <div class="inside-card-top-footer">
+              <figure class="profile">
+                <img src="{{profileSrc}}" class="profile-avatar">
+              </figure>
+              <!-- Accept Button-->
+              <div class="text-center">
+                <div class="accept-board">
+                  <div class="text-warning">
+                    <div class="text-warning" [innerHTML]="card.difficulty | fiveStars"></div>
+                  </div>
+                  <!--
+                  <div class="">
+                    <i class="fa fa-eye fa-2x"></i><span class="badge">{{card.viewNum}}</span>
+                    <i class="fa fa-sort fa-2x"></i><span class="badge">{{card.rating}}</span>
+                    <i class="fa fa-commenting-o fa-2x"></i><span class="badge">{{card.submissionNum}}</span>
+                  </div>
+                  <div class="">
+                    <i class="fa fa-check fa-2x"></i><span class="badge">{{card.correctNum}}</span>
+                    <i class="fa fa-times fa-2x"></i><span class="badge">{{card.wrongNum}}</span>
+                  </div>
+                  -->
+                  <div>
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-lg col-12"
+                      (click)="clickAcceptChallenge()"
+                      [disabled]="!enableACBtn">
+                      {{"Accept Challenge" | translate}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="user-name"><b>{{card.ownerName}}</b></div>
+            </div>
+            <div class="inside-card-bottom-footer">
+              <span *ngFor="let tag of card.tags"><a href="javascript:;" class="btn btn-xs btn-outline-warning" role="button">{{tag}}</a></span>
+              <br>
+              <div class="ml-1">
+                <small>Last updated {{card.tLastUpdate | timeAgo}}</small>
+                <!--
+                <div class="pull-right"><button class="btn btn-outline-danger btn-xs-danger">Report</button></div>
+                -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div #playingChallengeDiv class="container-fluid hidden-div">
+        <span><b>{{"Page" | translate}}:</b></span>
+        <div class="row mb-1">
+          <div class="col-md-8">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item" *ngFor="let pageNumber of pageArray" [class.active]="pageNumber === editSkyboard.currentPageNumber">
+                  <a class="page-link">{{pageNumber}}</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="col-md-4">
+            <span><i class="fa fa-clock-o fa-2x"></i> {{timerNum}} {{"s"|translate}}</span>
+          </div>
+        </div>
+
+        <app-skyboard #skyboard
+                      [mode]="skyboardMode"
+                      [initialActiveLayerName]="initialActiveLayerNameForPlay"
+                      [initialActiveToolName]="initialActiveToolName"
+                      [scopeFromParent]="scope"
+                      (onActivateProcess)="onActivateProcess($event)">
+        </app-skyboard>
+      </div>
+
+      <div #viewingChallengeDiv class="container-fluid hidden-div">
+        <div class="row">
+          <div class="col-md-4 push-md-8 right-view">
+            <div>
+              <a href="javascript:;" class="btn btn-primary btn-lg col-12" role="button" (click)="clickDoRevision()">{{"Do Revision" | translate}}</a>
+            </div>
+            <br>
+            <div>
+              <!-- page -->
+              <span><b>{{"Page" | translate}}:</b></span>
+              <ngb-pagination
+                [collectionSize]="pageSize"
+                [(page)]="paginationToolNumber"
+                [maxSize]="maxNoOfBoxToShow"
+                [rotate]="true"
+                size="sm"
+                (pageChange)="onPageChangeForView($event)"></ngb-pagination>
+            </div>
+            <app-skyboard #viewOnlySkyBoard
+                          [mode]="skyboardMode"
+                          [initialActiveLayerName]="initialActiveLayerNameForView"
+                          [initialActiveToolName]="initialActiveToolName"
+                          [scopeFromParent]="scope"
+                          (onActivateProcess)="onActivateProcess($event)">
+            </app-skyboard>
+          </div>
+          <div class="col-md-8 pull-md-4">
+            <!--
+            <mat-tab-group class="view-challenge-tab-group">
+              <mat-tab label="All">
+              -->
+            <div class="view-challenge-tab-content d-flex justify-content-between">
+              <!--
+              <div class="view-challenge-tab-left-div">
+                <span class="vote-up"><i class="fa fa-arrow-up fa-2x"></i></span>
+                <span class="vote-number">999</span>
+                <span class="vote-down"><i class="fa fa-arrow-down fa-2x" style="opacity: 0.5"></i></span>
+                <span class="like-number">10</span>
+                <span class="like-box"><i class="fa fa-heart-o fa-2x"></i></span>
+              </div>
+              -->
+              <div class="col view-challenge-tab-right-div">
+                <!-- float right graph and table
+                <div class="float-right view-challenge-graph">
+                  <a href="https://placeholder.com"><img src="http://via.placeholder.com/150x300"></a>
+                </div>
+                -->
+                <div>
+                  <!-- left content -->
+                  <h4 class="view-challenge-h4">{{"Overall statistic" | translate}}</h4>
+                  <span class="overall-stat-content"><b>{{"Marks (first submission)" | translate}}: </b>
+                  {{this.viewSkyboard.submitArr["correctF"]}}
+                  /
+                  {{this.viewSkyboard.submitArr["correctF"]+this.viewSkyboard.submitArr["wrongF"]}}
+                  ({{"average" | translate}}: {{this.viewSkyboard.avgCorrectF | number : '1.2-2'}})
+                </span>
+                  <span class="overall-stat-content"><b>{{"Marks (current)" | translate}}: </b>
+                  {{this.viewSkyboard.submitArr["correctC"]}}
+                  /
+                  {{this.viewSkyboard.submitArr["correctC"]+this.viewSkyboard.submitArr["wrongC"]}}
+                </span>
+                  <span class="overall-stat-content"><b>{{"Time spent (first submission)" | translate}}: </b>
+                  {{this.viewSkyboard.submitArr["timeSpentF"] | number : '1.2-2'}}{{"s" | translate}}
+                  ({{"average" | translate}}: {{this.viewSkyboard.avgTS | number : '1.2-2'}}{{"s" | translate}})
+                </span>
+                  <span class="overall-stat-content"><b>{{"Time spent (total)" | translate}}: </b>
+                  {{this.viewSkyboard.submitArr["timeSpentTotal"] | number : '1.2-2'}}{{"s" | translate}}
+                </span>
+                  <span class="overall-stat-content"><b>{{"Rank" | translate}}: </b>
+                  {{this.viewSkyboard.rank}} {{"out of" | translate}} {{this.viewSkyboard.rankTotal}}
+                </span>
+                  <span class="overall-stat-content"><b>{{"First submission" | translate}}: </b>
+                  <i>{{this.viewSkyboard.submitArr["tFirstSubmit"] | timeAgo}}</i>
+                </span>
+                  <span class="overall-stat-content"><b>{{"Last submission" | translate}}: </b>
+                  <i>{{this.viewSkyboard.submitArr["tLastSubmit"] | timeAgo}}</i>
+                </span>
+                  <span class="overall-stat-content"><b>{{"Number of Submission" | translate}}: </b>
+                  <i>{{this.viewSkyboard.submitArr["numOfSubmission"]}}</i>
+                </span>
+                  <div class="row">
+                    <div class="col-11 chart-div">
+                      <mat-expansion-panel expanded="true">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            {{"Number of Players vs Marks (First Submission)" | translate}}
+                          </mat-panel-title>
+                          <mat-panel-description></mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <canvas baseChart
+                                [datasets]="this.viewSkyboard.playerMarksChartData"
+                                [labels]="this.viewSkyboard.playerMarksChartLabels"
+                                [options]="this.viewSkyboard.playerMarksChartOptions"
+                                [legend]="this.viewSkyboard.playerMarksChartLegend"
+                                [chartType]="this.viewSkyboard.playerMarksChartType"></canvas>
+                      </mat-expansion-panel>
+                    </div>
+                    <div class="col-11 chart-div">
+                      <mat-expansion-panel expanded="true">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            {{"Time Spent (First Submission)" | translate}}
+                          </mat-panel-title>
+                          <mat-panel-description></mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <canvas baseChart
+                                [data]="this.viewSkyboard.playerTSChartData"
+                                [labels]="this.viewSkyboard.playerTSChartLabels"
+                                [chartType]="this.viewSkyboard.playerTSChartType"></canvas>
+                      </mat-expansion-panel>
+                    </div>
+                    <div class="col-11 chart-div">
+                      <mat-expansion-panel expanded="true">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            {{"Number of Correct and Wrong Answer on Answer box IDs (First Submission)" | translate}}
+                          </mat-panel-title>
+                          <mat-panel-description></mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <canvas baseChart
+                                [datasets]="this.viewSkyboard.playersAnswersChartData"
+                                [labels]="this.viewSkyboard.playersAnswersChartLabel"
+                                [options]="this.viewSkyboard.playersAnswersChartOptions"
+                                [legend]="this.viewSkyboard.playersAnswersChartLegend"
+                                [chartType]="this.viewSkyboard.playersAnswersChartType"></canvas>
+                      </mat-expansion-panel>
+                    </div>
+                  </div>
+                  <!-- // -->
+                  <div *ngFor="let sampleAnswerPages of this.viewSkyboard.modelArr['sampleAnswers']; let idx = index">
+                    <div *ngFor="let sampleAnswer of sampleAnswerPages" id="box{{sampleAnswer[3]}}">
+                      <span class="view-challenge-divider"></span>
+                      <!-- <h4 class="view-challenge-h4">{{sampleAnswer[0] ? sampleAnswer[0] : sampleAnswer[1]}}</h4> -->
+                      <div *ngIf="sampleAnswer[0]; then answerBlock else commentBlock"></div>
+                      <!-- Answer Box -->
+                      <ng-template #answerBlock>
+                        <h4 class="view-challenge-h4">{{"Page" | translate}} {{idx+1}} - {{"Answer Box ID" | translate}} {{sampleAnswer[3]}}</h4>
+                        <div *ngFor="let myAnswerFPage of this.viewSkyboard.submitArr['answersF']">
+                          <div *ngFor="let myAnswerF of myAnswerFPage">
+                            <div *ngIf="myAnswerF[3] === sampleAnswer[3]; then myAnswerBlockF"></div>
+                            <ng-template #myAnswerBlockF>
+                              <span class="answer-text-content">
+                                <b>{{"First submitted answer" | translate}}: </b>{{myAnswerF[0]}}
+                                <div *ngIf="(myAnswerF[2] && myAnswerF[0] === sampleAnswer[0]) || (!myAnswerF[2] && myAnswerF[0].toString().toUpperCase() === sampleAnswer[0].toString().toUpperCase()); then correctBlock else wrongBlock"></div>
+                                <ng-template #correctBlock>
+                                  <i class="fa fa-check fa"></i>
+                                </ng-template>
+                                <ng-template #wrongBlock>
+                                  <i class="fa fa-times fa"></i>
+                                </ng-template>
+                              </span>
+                            </ng-template>
+                          </div>
+                        </div>
+                        <div *ngFor="let myAnswerCPage of this.viewSkyboard.submitArr['answersC']">
+                          <div *ngFor="let myAnswerC of myAnswerCPage">
+                            <div *ngIf="myAnswerC[3] === sampleAnswer[3]; then myAnswerBlockC"></div>
+                            <ng-template #myAnswerBlockC>
+                              <span class="answer-text-content">
+                                <b>{{"Last submitted answer" | translate}}: </b>{{myAnswerC[0]}}
+                                <div *ngIf="(myAnswerC[2] && myAnswerC[0] === sampleAnswer[0]) || (!myAnswerC[2] && myAnswerC[0].toString().toUpperCase() === sampleAnswer[0].toString().toUpperCase()); then correctBlock else wrongBlock"></div>
+                                <ng-template #correctBlock>
+                                  <i class="fa fa-check fa"></i>
+                                </ng-template>
+                                <ng-template #wrongBlock>
+                                  <i class="fa fa-times fa"></i>
+                                </ng-template>
+                              </span>
+                            </ng-template>
+                          </div>
+                        </div>
+                        <div *ngFor="let submittedAnswerPage of this.viewSkyboard.submitArr['submittedAnswers']">
+                          <div *ngFor="let submittedAnswer of submittedAnswerPage">
+                            <div *ngIf="submittedAnswer[0] === sampleAnswer[3]; then myNumOfAttemptBlock"></div>
+                            <ng-template #myNumOfAttemptBlock>
+                              <span class="answer-text-content"><b>{{"Number of Attempt" | translate}}: </b>{{submittedAnswer[1]}}</span>
+                            </ng-template>
+                          </div>
+                        </div>
+                        <!-- my first submitted comment
+                        <div *ngFor="let myAnswerF2 of this.viewSkyboard.submitArr['answersF']">
+                          <div *ngIf="(myAnswerF2[3] === sampleAnswer[3] && myAnswerF2[1] !== ''); then myCommentBlockF"></div>
+                          <ng-template #myCommentBlockF>
+                            <span class="comment-text-content"><b>My first submitted comment: </b>{{myAnswerF2[1]}}</span>
+                          </ng-template>
+                        </div>
+                         -->
+                        <!-- my last submitted comment -->
+                        <div *ngFor="let myAnswerC2Page of this.viewSkyboard.submitArr['answersC']">
+                          <div *ngFor="let myAnswerC2 of myAnswerC2Page">
+                            <div *ngIf="(myAnswerC2[3] === sampleAnswer[3] && myAnswerC2[1] !== ''); then myCommentBlockC"></div>
+                            <ng-template #myCommentBlockC>
+                              <span class="comment-text-content"><b>{{"My note" | translate}}: </b>{{myAnswerC2[1]}}</span>
+                            </ng-template>
+                          </div>
+                        </div> <!-- *** -->
+                        <div class="row">
+                          <div class="col-11 chart-div">
+                            <mat-expansion-panel [expanded]="false">
+                              <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                  {{"Model Answer" | translate}}
+                                </mat-panel-title>
+                                <mat-panel-description>({{"Click here to see the answer" | translate}})</mat-panel-description>
+                              </mat-expansion-panel-header>
+                              <span><b>{{"Answer" | translate}}: </b>{{sampleAnswer[0]}}</span><br>
+                              <!-- question creator's comment -->
+                              <div *ngIf="sampleAnswer[1]; then modelCommentBlock"></div>
+                              <ng-template #modelCommentBlock>
+                                <span><b>{{"Explanation" | translate}}: </b>{{sampleAnswer[1]}}</span>
+                              </ng-template>
+                            </mat-expansion-panel>
+                          </div>
+                          <div class="col-11 chart-div">
+                            <mat-expansion-panel expanded="true">
+                              <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                  {{"Number of Correct Answer vs Number of Wrong Answer (First Submission)" | translate}}
+                                </mat-panel-title>
+                                <mat-panel-description> </mat-panel-description>
+                              </mat-expansion-panel-header>
+                              <!-- ngif is added to avoid error of reading undefined -->
+                              <div *ngIf="this.viewSkyboard.playerSAChartDataForAnswerID[sampleAnswer[3]]">
+                                <canvas baseChart
+                                        [data]="this.viewSkyboard.playerCWChartDataForAnswerID[sampleAnswer[3]]"
+                                        [labels]="this.viewSkyboard.playerCWChartLabelForAnswerID"
+                                        [chartType]="this.viewSkyboard.playerCWChartTypeForAnswerID"></canvas>
+                              </div>
+                            </mat-expansion-panel>
+                          </div>
+                          <div class="col-11 chart-div">
+                            <mat-expansion-panel expanded="true">
+                              <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                  {{"Top 4 Answers (First Submission)" | translate}}
+                                </mat-panel-title>
+                                <mat-panel-description></mat-panel-description>
+                              </mat-expansion-panel-header>
+                              <div *ngIf="this.viewSkyboard.playerSAChartDataForAnswerID[sampleAnswer[3]]">
+                                <canvas baseChart
+                                        [data]="this.viewSkyboard.playerSAChartDataForAnswerID[sampleAnswer[3]]"
+                                        [labels]="this.viewSkyboard.playerSAChartLabelForAnswerID[sampleAnswer[3]]"
+                                        [options]="this.viewSkyboard.playerSAChartOptionForAnswerID"
+                                        [legend]="this.viewSkyboard.playerSAChartLegendForAnswerID"
+                                        [chartType]="this.viewSkyboard.playerSAChartTypeForAnswerID"></canvas>
+                              </div>
+                            </mat-expansion-panel>
+                          </div>
+                        </div>
+                      </ng-template>
+                      <!-- Comment Box -->
+                      <ng-template #commentBlock>
+                        <h4 class="view-challenge-h4">{{"Page" | translate}} {{idx+1}} - {{"Comment Box ID" | translate}} {{sampleAnswer[3]}}</h4>
+                        <div *ngFor="let myAnswerC2Page of this.viewSkyboard.submitArr['answersC']">
+                          <div *ngFor="let myAnswerC2 of myAnswerC2Page">
+                            <div *ngIf="(myAnswerC2[3] === sampleAnswer[3] && myAnswerC2[1] !== ''); then myCommentBlockC"></div>
+                            <ng-template #myCommentBlockC>
+                              <span class="comment-text-content"><b>{{"My note" | translate}}: </b>{{myAnswerC2[1]}}</span>
+                            </ng-template>
+                          </div>
+                        </div>
+                      </ng-template>
+                      <!-- others comments
+                      <span class="comment-text-content">Please, do not use align="center" because it is deprecated. – <a>Biotox</a> <i>Dec 5 '11 at 21:46</i></span>
+                      <span class="comment-text-content">Please, do not use align="center" because it is deprecated. – <a>Biotox</a> <i>Dec 5 '11 at 21:46</i></span>
+                      -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--
+          </mat-tab>
+          <mat-tab label="Answer Box 1">
+            <div class="demo-tab-content">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+              Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+              In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+              feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+              orci enim rutrum enim, vel tempor sapien arcu a tellus.
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+         -->
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+    </div>
+  </div>
+</div>
+
+
+
+

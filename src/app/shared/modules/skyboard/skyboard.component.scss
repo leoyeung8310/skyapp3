@@ -1,0 +1,243 @@
+.steps {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.steps a {
+  color: white;
+  text-decoration: none;
+}
+.steps em {
+  display: block;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+.steps span {
+  display: block;
+  width: 125px;
+  height: 42px;
+}
+.steps li {
+  font-size: 0.9em;
+  float: left;
+  margin-left: 0;
+  width: 150px; /* 100 / number of steps */
+  height: 70px; /* total height */
+  list-style-type: none;
+  padding: 5px 5px 5px 30px; /* padding around text, last should include arrow width */
+  border-right: 3px solid white; /* width: gap between arrows, color: background of document */
+  position: relative;
+}
+/* remove extra padding on the first object since it doesn't have an arrow to the left */
+.steps li:first-child {
+  padding-left: 5px;
+}
+/* white arrow to the left to "erase" background (starting from the 2nd object) */
+.steps li:nth-child(n+2)::before {
+  position: absolute;
+  top:0;
+  left:0;
+  display: block;
+  border-left: 25px solid white; /* width: arrow width, color: background of document */
+  border-top: 40px solid transparent; /* width: half height */
+  border-bottom: 40px solid transparent; /* width: half height */
+  width: 0;
+  height: 0;
+  content: " ";
+}
+/* colored arrow to the right */
+.steps li::after {
+  z-index: 1; /* need to bring this above the next item */
+  position: absolute;
+  top: 0;
+  right: -25px; /* arrow width (negated) */
+  display: block;
+  border-left: 25px solid #7c8437; /* width: arrow width */
+  border-top: 40px solid transparent; /* width: half height */
+  border-bottom: 40px solid transparent; /* width: half height */
+  width:0;
+  height:0;
+  content: " ";
+}
+
+/* Setup colors (both the background and the arrow) */
+
+/* Completed */
+.steps li { background-color: #009DEC; }
+.steps li::after { border-left-color: #009DEC; }
+
+/* Current */
+.steps li.current { background-color: #0074D9; }
+.steps li.current::after { border-left-color: #0074D9; }
+
+/* Following */
+.steps li.current ~ li { background-color: #DDDDDD; }
+.steps li.current ~ li::after { border-left-color: #DDDDDD; }
+
+/* Hover for completed and current */
+.steps li:hover {background-color: #FF813D  }
+.steps li:hover::after {border-left-color: #FF813D}
+
+/* Setup opacity of radio buttons */
+.btn {
+  padding: 0.3rem 0.3rem;
+  opacity: 1;
+  border:1px solid #98baec;
+  border-radius: 5px;
+}
+.selectedTool {
+  background-color: #fff900;
+}
+.hidden{
+  visibility:hidden;
+}
+.btn-disabled{
+  opacity: 0.2;
+  background-color: #99949b;
+}
+
+.main-view {
+  background-color: #d3ced5;
+  width: 595px;
+  height: 842px;
+  max-height: 842px;
+  padding-right: 0px;
+  padding-left: 0px;
+  // if use border in canvas, it may affect the logic of resizing height
+  border:1px solid #99949b;
+  border-radius: 15px;
+}
+
+/* Color Picker */
+.color-picker{
+  height: 33px;
+  width: 27px;
+}
+
+#changeme{
+  font-size:30px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+.cmyk{
+  margin-left: 11px;
+}
+.cmyk div{
+  height: 72px;
+  width: 72px;
+  line-height: 72px;
+  text-align: center;
+  float:left;
+}
+.cmyk span{
+  font-weight: bolder;
+  text-shadow: 1px 1px 2px #bbb;
+}
+
+#color-comparator button{
+  height: 26px;
+  width: 26px;
+  display: block;
+  float:left;
+  border:none;
+  margin:0;
+  padding:0;
+  border: 2px solid #888;
+}
+
+#color-comparator > input{
+  height: 26px;
+  width: 182px;
+  display: block;
+  float:left;
+  border:none;
+  margin:0;
+  padding:0;
+}
+
+.array-colors-element{
+  width: 100px;
+  height: 25px;
+  margin-bottom: 15px;
+}
+
+.col-md-5 > input{
+  margin-bottom: 10px;
+  width: 182px;
+}
+
+// # = id, . = class
+// Text Editor Context Menu
+.editor {
+  border:1px solid silver;
+  border-radius:5px;
+  min-height:150px;
+  box-shadow: inset 0 0 10px silver;
+  padding:0.5em;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+
+.btn-file input[type=file][disabled]{
+  cursor: not-allowed;
+}
+
+.hidden-div {
+  height: 2em;
+  display: none;
+}
+
+.hidden-span {
+  height: 2em;
+  visibility: hidden;
+}
+
+.toolbar {
+  // width: 120px;
+  // height: 520px;
+  // position: absolute;
+}
+
+.board {
+  // border:1px solid #98baec;
+  // margin-left: 130px
+  min-width: 235px;
+}
+
+.control-div{
+  // display: inline-block;
+  margin-top: 5px;
+}
+
+@media (max-width: 576px) {
+  .tool-bar-grid{
+    display:inline;
+  }
+}
+
+@media (max-width: 768px) {
+  .tool-bar-name {
+    height: 2em;
+    display: none;
+  }
+}
+
+

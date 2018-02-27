@@ -1,0 +1,219 @@
+h5 {
+  font-size: 1.28571429em;
+  font-weight: 700;
+  line-height: 1.2857em;
+  margin: 0;
+}
+
+.card {
+  font-size: 1em;
+  overflow: hidden;
+  padding: 0;
+  border: none;
+  border-radius: .28571429rem;
+  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+}
+
+.inside-card-header {
+  padding: 0.3em;
+  background-color: #f7f7f9;
+  height: auto;
+}
+.subtopic{
+  font-size: 14px;
+}
+
+.inside-card-top-footer{
+  background-color: #f7f7f9;
+  height: 38px;
+  position: relative;
+  margin: 0;
+  padding: 0.3em;
+  box-shadow: none;
+}
+
+.btn-xs{
+  text-decoration: none; font: menu;
+  display: inline-block; padding: 2px 8px;
+  color: ButtonText;
+  border-style: solid;
+  border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+}
+
+.btn-xs-danger{
+  text-decoration: none; font: menu;
+  display: inline-block; padding: 2px 8px;
+  color: red;
+  border-style: solid;
+  border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+}
+
+.btn-xs-danger:hover{
+  background-color: #bd4147; /* Green */
+  color: white;
+}
+
+
+.badge{
+  color: black;
+}
+
+.card-img-top {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.card-text {
+  clear: both;
+  margin-top: .5em;
+  color: rgba(0, 0, 0, .68);
+}
+
+.inside-card-bottom-footer {
+  font-size: 1em;
+  position: static;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  padding: .3em;
+  color: rgba(0, 0, 0, .4);
+  border-top: 0px solid rgba(0, 0, 0, .05) !important;
+  background: #f7f7f9;
+}
+
+.inside-card-content {
+  font-size: 1em;
+  position: static;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  padding: .3em;
+  color: rgba(0, 0, 0, .4);
+  border-top: 1px solid rgba(0, 0, 0, .05) !important;
+  background: #fff;
+}
+
+.card-inverse .btn {
+  border: 1px solid rgba(0, 0, 0, .05);
+}
+
+.card-title {
+  position: relative;
+  top: 10px;
+  display: inline-block;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 1.28571429em;
+  font-weight: 700;
+  line-height: 1.2857em;
+}
+
+.card-thumbnail{
+  height: 150px;
+  opacity: 0.5;
+  filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+.card-thumbnail:hover {
+  opacity: 1.0;
+  filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
+.block-status-status {
+  position: relative;
+  top: -165px;
+  display: inline-block;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  height: 160px;
+}
+
+.status-spacing{
+  height: 115px;
+}
+
+.user-name {
+  position: absolute;
+  top: 0px;
+  left: 58px;
+  display: inline-block;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 14px;
+}
+
+.profile {
+  position: absolute;
+  top: -25px;
+  display: inline-block;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+
+.profile-avatar {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+.profile-inline {
+  position: relative;
+  top: 0;
+  display: inline-block;
+}
+
+.profile-inline ~ .card-title {
+  display: inline-block;
+  margin-left: 4px;
+  vertical-align: top;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.meta {
+  font-size: 1em;
+  color: rgba(0, 0, 0, .4);
+}
+
+.meta a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, .4);
+}
+
+.meta a:hover {
+  color: rgba(0, 0, 0, .87);
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.main-view {
+  background-color: #d3ced5;
+  width: 595px;
+  height: 300px;
+  max-height: 842px;
+  padding-right: 0px;
+  padding-left: 0px;
+  // if use border in canvas, it may affect the logic of resizing height
+  border:1px solid #99949b;
+  border-radius: 15px;
+}
