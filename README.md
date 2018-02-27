@@ -1,23 +1,71 @@
-#Skyapp - Comments from Leo about SkyApp, 2017-06-18
+#Pre-installation: (Requirement for any NodeJS + AngularJS + MongoDB application)
+Install nodejs,
 
-This is a base project under structure of MEAN (with Angular 4), Bootstrap 4 with free [SBAdmin4 template](https://github.com/start-angular/SB-Admin-BS4-Angular-4) and SocketIO, latest real-time web app setup approach in 2017. 
+`nvm --version` → check installation success
 
-##The difference between template of SBAdmin4 include:
-a) In my app, 
-login page gets version info from MongoDB, by default showing 2.0.0, related folders/files include:
-* src/app/login/
-* app_api/controllers/main.js
-* app_api/models/main.js
-* app_api/routes/index.js
+Install angular cli
 
-b) Login page provides **real-time** chat functions by socketIO, related folders/files include:
-* src/app/login
+`npm install -g @angular/cli` [make sure you have 'sudo -s']
 
-c) All pages having assets taken from *http* changes to *https* for heroku required secure connection.
+`ng --version` → check installation
 
-d) One *http* source image change to local source (slide_461162_6224974_sq50.jpg), stored in src/assets/images, because *https* is denied.
+Run Web App locally
 
-e) Favicon.ico changes image from "SB" to "SA", means SkyApp.
+`ng serve`
+
+see webpage in http:localhost:4200
+
+Install development tool for editing (optional)
+
+WebStorm or Visual Code
+
+#Run and install MongoDB on MacOS:
+Install brew: (https://brew.sh/)
+
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+`brew update`
+
+Install mongoDB by brew: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
+
+`brew install mongodb`
+
+Create the data directory, where leo = (your username):
+
+`sudo mkdir -p /data/db`
+
+`sudo chown -R leo /data/db`
+
+Run MongoDB in 1st terminal:
+`mongod`
+
+#Installation of SkyApp 3:
+Install JS Frameworks
+
+`cd skyapp`
+
+`npm install → install required frameworks based on “package.json”`
+
+#To run local with MongoDB:
+When MongoDB is running in your machine, you can run command to run the app in 2nd terminal:
+
+`npm run local`
+
+#Account and Password
+1) Passport’s secret key: "(input secret here)"         
+(You may use/edit the key of "secret" in app_api/config/database.js)
+
+2) User creation key: "(input passcode here)"
+(You may use/edit the key of "code" in app_api/config/database.js)
+
+#Transfer source code to other machine:
+compress without ‘package-lock.json’ and the folder ‘node_module’, de-compress in other machine
+
+`npm install`
+
+#Other comments from Leo about SkyApp
+
+This is a base project under structure of MEAN (with Angular 4), Bootstrap 4 with free [SBAdmin4 template](https://github.com/start-angular/SB-Admin-BS4-Angular-4) and SocketIO (Will be released in SkyApp 3.1), latest real-time web app setup approach in 2017. 
 
 ##Client-side Info:
 
@@ -35,13 +83,13 @@ e) Favicon.ico changes image from "SB" to "SA", means SkyApp.
 * `app_api\routes\chat.js`
 * `src\app\login`.  
 
-Chat example's real-time property has been tested that works normally in intranet and deployed in heroku server.  
+Chat example's real-time property has been tested that works normally in intranet and deployed in heroku server. Major chat function will be released in SkyApp 3.1.
 
 ##(Important) Install nodemodules
 
 **One-time command** : Run `npm install`.
 
-##Build and Run App in Local:
+##Build and run App in Local:
 
 First, in terminal 1, Run `mongod` to execute mongod, wait for connection. This app will connect to the database "skyapp". Keep the terminal's process.
 
