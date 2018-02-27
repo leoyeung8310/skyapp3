@@ -1,4 +1,5 @@
-#Pre-installation: (Requirement for any NodeJS + AngularJS + MongoDB application)
+## Pre-installation: (Requirement for any NodeJS + AngularJS + MongoDB application)
+
 Install nodejs,
 
 `nvm --version` → check installation success
@@ -19,7 +20,8 @@ Install development tool for editing (optional)
 
 WebStorm or Visual Code
 
-#Run and install MongoDB on MacOS:
+## Run and install MongoDB on MacOS:
+
 Install brew: (https://brew.sh/)
 
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -39,43 +41,43 @@ Create the data directory, where leo = (your username):
 Run MongoDB in 1st terminal:
 `mongod`
 
-#Installation of SkyApp 3:
+## Installation of SkyApp 3:
 Install JS Frameworks
 
 `cd skyapp`
 
 `npm install → install required frameworks based on “package.json”`
 
-#To run local with MongoDB:
+## To run local with MongoDB:
 When MongoDB is running in your machine, you can run command to run the app in 2nd terminal:
 
 `npm run local`
 
-#Account and Password
+## Account and Password
 1) Passport’s secret key: "(input secret here)"         
 (You may use/edit the key of "secret" in app_api/config/database.js)
 
 2) User creation key: "(input passcode here)"
 (You may use/edit the key of "code" in app_api/config/database.js)
 
-#Transfer source code to other machine:
+## Transfer source code to other machine:
 compress without ‘package-lock.json’ and the folder ‘node_module’, de-compress in other machine
 
 `npm install`
 
-#Other comments from Leo about SkyApp
+## Other comments from Leo about SkyApp
 
 This is a base project under structure of MEAN (with Angular 4), Bootstrap 4 with free [SBAdmin4 template](https://github.com/start-angular/SB-Admin-BS4-Angular-4) and SocketIO (Will be released in SkyApp 3.1), latest real-time web app setup approach in 2017. 
 
-##Client-side Info:
+## Client-side Info:
 
 **Angular 4** is installed and preferred, thus **typescript** is used. **HTML5** is suggested to handles UI, **sass/scss** handles style, while **CSS** can also be directly imported. Angular App's folder may refer to `src`. Highly recommended to use Angular CLI instead of manual creation to make component or etc.    
 
-##Server-side Info:
+## Server-side Info:
 
 **Mongoose** is setup. **API** server setup is stored in folder `app_api`.  
 
-##Socket IO Chat Example:
+## Socket IO Chat Example:
 
 **SocketIO** [example](https://www.djamware.com/post/58e0d15280aca75cdc948e4e/building-chat-application-using-mean-stack-angular-4-and-socketio) refer to 
 * `server.js`
@@ -85,11 +87,11 @@ This is a base project under structure of MEAN (with Angular 4), Bootstrap 4 wit
 
 Chat example's real-time property has been tested that works normally in intranet and deployed in heroku server. Major chat function will be released in SkyApp 3.1.
 
-##(Important) Install nodemodules
+## (Important) Install nodemodules
 
 **One-time command** : Run `npm install`.
 
-##Build and run App in Local:
+## Build and run App in Local:
 
 First, in terminal 1, Run `mongod` to execute mongod, wait for connection. This app will connect to the database "skyapp". Keep the terminal's process.
 
@@ -97,7 +99,7 @@ Second, in terminal 2, Run `npm run local` to build and run app in localhost, de
 
 if you only want to modify client-side UI without connection of DB, you may use `ng serve`. 
 
-##Build and Run App in Heroku:
+## Build and Run App in Heroku:
 
 Make sure you have **Git**, **Heroku CLI** installed properly. Connection to **Heroku** (e.g. by `heroku create`) has been done in your project. External MongoDB (e.g. MongoLab) is connected, [for example](https://devcenter.heroku.com/articles/mongolab). This app requires the environment variable `process.env.MONGODB_URI`. 
 
